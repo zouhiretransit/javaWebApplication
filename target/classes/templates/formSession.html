@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymleaf/layout"
+	layout:decorator="templateHeader">
+<head>
+<meta charset="utf-8">
+<title>Liste Des sessions</title>
+</head>
+<body>
+	<div layout:fragment="pageContenu">
+		<div class="container mt-5">
+			<div class="card">
+				<div class="card-header" th:if="${session.id==null}">
+					Formulaire d'ajout un nouveau session</div>
+				<div class="card-header" th:if="${session.id!=null}">
+					Formulaire de modification un session</div>
+				<br>
+				<div class="card-body">
+					<form th:action="@{ajouterSession}" method="post">
+						<div class="form-group">
+							<label class="control-label">Id: </label> <label
+								class="control-label" th:text="${session.id}"> </label> <input
+								type="hidden" name="id" class="form-control"
+								th:value="${session.id}">
+						</div>
+						<div class="form-group">
+							<label>Nom: </label> <input type="text" name="nomSession"
+								class="form-control" th:value="${session.nomSession}"> <span
+								style="color: red" th:errors=${session.nomSession}></span>
+						</div>
+						<div class="form-group">
+							<label>Date Debut: </label> <input type="date"
+								name="dateDebut" class="form-control"
+								th:value="${session.dateDebut}"> <span></span>
+						</div>
+						<div class="form-group">
+							<label>Date Fin: </label> <input type="date"
+								name="dateFin" class="form-control"
+								th:value="${session.dateFin}"> <span></span>
+						</div>
+						<button class="btn btn-success" type="submit">Ajouter</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

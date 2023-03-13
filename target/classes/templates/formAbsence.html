@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymleaf/layout"
+	layout:decorator="templateHeader">
+<head>
+<meta charset="utf-8">
+<title>Liste Des Participants</title>
+</head>
+<body>
+	<div layout:fragment="pageContenu">
+		<div class="container mt-5">
+			<div class="card">
+				<div class="card-header">
+					Formulaire d'absence</div>
+				
+				<br>
+				<div class="card-body">
+			     <form th:action="@{ajouterAbsence}" method="post">
+						<div class="form-group">
+							<label class="control-label">Id: </label> <label
+								class="control-label" th:text="${absence.id}"> </label> <input
+								type="hidden" name="id" class="form-control">
+						</div>
+						<div class="form-group">
+							<label>Date D'absence: </label> <input type="datetime-local" name="dateAbsence"
+								class="form-control" th:value="${absence.dateAbsence}"> <span
+								style="color: red" ></span>
+						</div>
+						<div class="form-group">
+							<label>Formateur: </label>
+							<select th:field="${absence.formateur.id}" class="form-control" name="formateur">
+							   <option th:each="formateur : ${formateurs}" th:text="${formateur.nom}" th:value="${formateur.id}" />
+							   
+							</select>
+							<span></span>
+						</div>
+						<div class="form-group">
+							<label>Formation: </label>
+							<select th:field="${absence.formation.id}" class="form-control" name="formation" id="dropDownFormation">
+							   <option th:each="formation : ${formations}"  th:text="${formation.nomFormation}" th:value="${formation.id}"  />
+							</select>
+							<span></span>
+						</div>
+						<br>
+						
+						<button id="btnAjouter" class="btn btn-success" type="submit">Ajouter</button>
+				</form>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>

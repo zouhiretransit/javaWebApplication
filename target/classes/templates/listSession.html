@@ -1,0 +1,45 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymleaf/layout"
+	layout:decorator="templateHeader">
+<head>
+<meta charset="utf-8">
+<title>Liste Des Sessions</title>
+</head>
+<body>
+	<div layout:fragment="pageContenu">
+		<div class="container mt-6">
+			<div class="card">
+				<div class="card-header">Liste Des Sessions</div>
+				<div class="card-body">
+					<br>
+					<form method="get" th:action="@{listSession}">
+						<div class="form-group">
+							<label>Nom Session :</label> <input type="text" name="nomSessionCle"
+								th:value="${motCleS}">
+							<button class="btn btn-primary">Chercher</button>
+						</div>
+					</form>
+					<table class="table">
+						<tr>
+							<th>ID</th><th>Nom Session</th><th>Date Début</th><th>Date Fin</th><th>Suppression</th><th>Modification</th>
+						</tr>
+						<tr th:each="s : ${listSessions}">
+							<td th:text="${s.id}"></td>
+							<td th:text="${s.nomSession}"></td>
+							<td th:text="${s.dateDebut}"></td>
+							<td th:text="${s.dateFin}"></td>
+							<td><a onclick="return confirm('Etes vous sure de vouloir supprimer? ')" class="btn btn-danger" th:href="@{supprimerSession(id=${s.id},page=${currentPageS},size=${size},nomSessionCle=${motCleS})}">Supprimer</a></td>
+							<td><a class="btn btn-danger" th:href="@{modifierSession(id=${s.id})}">Modifier</a></td>
+						</tr>
+					</table>
+					<ul class="nav nav-pills">
+					    <li th:each="page,status : ${pagesS}">
+					        <a th:class="${status.index == currentPageS ? 'btn btn-primary' : 'btn'}" th:href="@{listSession(page=${status.index},size=${size},nomSessionCle=${motCleS})}" th:text="${status.index}"></a>
+					    </li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

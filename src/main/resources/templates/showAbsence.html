@@ -1,0 +1,40 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymleaf/layout"
+	layout:decorator="templateHeader">
+<head>
+<meta charset="utf-8">
+<title>Liste Des Participants</title>
+</head>
+<body>
+	<div layout:fragment="pageContenu">
+		<div class="container mt-5">
+			<div class="card">
+				<div class="card-header">Liste Des Partcipants absentés</div>
+				<br>
+				<div class="card-body">
+				<label>Date d'absence: </label>  <label
+								class="control-label" th:text="${absence.dateAbsence}"> </label>
+				   <table class="table">
+				     <thead>
+				        <tr>
+				           <th>ID</th><th>Nom</th><th>Prenom</th><th>Date de naissance</th><th>Email</th><th>Fonction</th><th>Formation</th>
+				        </tr>
+				     </thead>
+				     <tbody>
+				       <tr th:each="parAb : ${participantsAbsence}">
+				         <td th:text="${parAb.id}"></td>
+				         <td th:text="${parAb.nom}"></td>
+				         <td th:text="${parAb.prenom}"></td>
+				         <td th:text="${parAb.dateNaissance}"></td>
+				         <td th:text="${parAb.email}"></td>
+				         <td th:text="${parAb.fonction}"></td>
+				         <td th:text="${parAb.formation?.nomFormation}"></td>
+				       </tr>
+				     </tbody>
+				   </table>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

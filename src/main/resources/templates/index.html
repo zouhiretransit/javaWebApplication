@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymleaf/layout"
+      layout:decorator="templateHeader">
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="/css/styleSession.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- <link rel="stylesheet" type="text/css" href="/css/all.css"> -->
+</head>
+<body>
+   <div layout:fragment="pageContenu">
+   <i class="fas fa-biking"></i>
+      <div class="container">
+        <a th:href="@{participants}">
+          <div class="box">
+             <div class="icon"><i class="fa fa-users" aria-hidden="true"></i></div>
+             <div class="content">
+               <h3>Participants</h3>
+               <p> Ajouter une session avec des dates precises</p>
+             </div>
+          </div>
+        </a>
+        <a th:href="@{formateurs}">
+          <div class="box">
+             <div class="icon"><i class="fa fa-user-o" aria-hidden="true"></i></div>
+             <div class="content">
+               <h3>Formateurs</h3>
+               <p> Mettre à jour une session </p>
+             </div>
+          </div>
+          </a>
+          <a th:href="@{responsablesFormations}">
+          <div class="box">
+             <div class="icon"><i class="fa fa-user-circle" aria-hidden="true"></i></div>
+             <div class="content">
+               <h3>Responsable Formation</h3>
+               <p> Mettre à jour une session </p>
+             </div>
+          </div>
+          </a>
+          <a th:href="@{formations}">
+          <div class="box">
+             <div class="icon"><i class="fa fa-clipboard" aria-hidden="true"></i></div>
+             <div class="content">
+               <h3>Gestion Formations</h3>
+               <p> Mettre à jour une session </p>
+             </div>
+          </div>
+          </a>
+          <a th:href="@{formAbsence}">
+          <div class="box">
+             <div class="icon"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></div>
+             <div class="content">
+               <h3>Gestion d'absence</h3>
+               <p> Ajouter une session avec des dates precises</p>
+             </div>
+          </div>
+        </a>
+        <a th:href="@{formSession}">
+          <div class="box">
+             <div class="icon"><i class="fa fa-bar-chart" aria-hidden="true"></i></div>
+             <div class="content">
+               <h3>Evaluation</h3>
+               <p> Ajouter une session avec des dates precises</p>
+             </div>
+          </div>
+        </a>
+      </div>
+   </div>
+</body>
+</html>

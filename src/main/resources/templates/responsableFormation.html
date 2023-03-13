@@ -1,0 +1,51 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymleaf/layout"
+      layout:decorator="templateHeader" >
+<head>
+<meta charset="utf-8">
+<title>Liste Des Responsables D'informations</title>
+</head>
+<body>
+<div layout:fragment="pageContenu">
+<div class="container mt-5">
+<div class="card">
+    <div class="card-header">Liste Des Responsables D'informations</div>
+    <div class="card-body">
+    <br>
+    <form action="get" th:action="@{responsablesFormations}">
+       <div class="form-group">
+          <label>Nom: </label>
+          <input type="text" name="nomRF" th:value="${motCleRF}">
+          <button class="btn btn-primary">Rechercher</button>
+       </div>
+    </form>
+    <br>
+    <table class="table">
+    <tr>
+       <th>ID</th><th>Nom</th><th>Prenom</th><th>Date de naissance</th><th>Email</th><th>Matricule</th><th>Suppression</th><th>Modification</th>
+    </tr>
+    <tr th:each="r:${listRF}">
+       <td th:text="${r.id}"></td>
+       <td th:text="${r.nom}"></td>
+       <td th:text="${r.prenom}"></td>
+       <td th:text="${r.dateNaissance}"></td>
+       <td th:text="${r.email}"></td>
+       <td th:text="${r.matricule}"></td>
+       <td><a class="btn btn-danger" th:href="@{supprimerRespFormation(id=${r.id}, page=${currentPage}, size=${size}, nomRF=${motCleRF})}">Supprimer</a></td>
+       <td><a class="btn btn-danger" th:href="@{modifierResponsableFormation(id=${r.id})}">Modifier</a></td>
+    </tr>
+</table>
+       <ul class="nav nav-pills">
+          <li th:each="page, status:${pagesRF}">
+             <a th:class="${status.index == currentPage ? 'btn btn-primary' : 'btn'}" 
+                th:href="@{responsablesFormations(page=${status.index},size=${size})}"
+                th:text="${status.index}"></a>
+          </li>
+       </ul>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
+</html>

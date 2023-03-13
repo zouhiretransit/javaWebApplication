@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:layout="http://www.ultraq.net.nz/thymleaf/layout"
+      layout:decorator="templateHeader">
+<head>
+<meta charset="utf-8">
+<title>liste des patients</title>
+</head>
+<body>
+<div layout:fragment="pageContenu">
+<div class="container mt-5">
+<div class="card">
+    <div class="card-header">Liste des patients</div>
+    <div class="card-body">
+     <form method="get" th:action="@{index}">
+        <div class="form-group">
+            <label>id :</label>
+            <input type="text" name="idFormation">
+            <button class="btn btn-primary">Chercher</button>
+        </div>
+    </form>
+     <table class="table">
+    <tr>
+       <th>ID</th><th>Nom</th><th>Prenom</th><th>Date de naissance</th><th>Email</th><th>Fonction</th>
+    </tr>
+    <tr th:each="p:${listP}">
+       <td th:text="${p.id}"></td>
+       <td th:text="${p.nom}"></td>
+       <td th:text="${p.prenom}"></td>
+       <td th:text="${p.dateNaissance}"></td>
+       <td th:text="${p.email}"></td>
+       <td th:text="${p.fonction}"></td>
+    </tr>
+</table>
+<input type="text" th:value="${maxAbsence}">
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

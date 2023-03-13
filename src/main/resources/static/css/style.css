@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,400;1,700&display=swap');
+body {
+	background-image: url(../images/computers.png);
+	height:100%;
+	
+	
+	/* overflow-x: hidden;
+	font-family: 'Lato',sans-serif; */
+	color: #804040;
+}
+.home-inner{
+	
+	background-image: url(../images/home.jpg);
+}
+.color{
+	
+	color: #ffffff;
+}

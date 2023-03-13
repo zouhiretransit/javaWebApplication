@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymleaf/layout"
+      layout:decorator="templateHeader">
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="/css/styleSession.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+   <div layout:fragment="pageContenu">
+      <div class="container">
+        <a th:href="@{formSession}">
+          <div class="box">
+             <div class="icon"><i class="fa fa-plus-square" aria-hidden="true"></i></div>
+             <div class="content">
+               <h3>Ajouter</h3>
+               <p> Ajouter une session avec des dates precises</p>
+             </div>
+          </div>
+        </a>
+        <a th:href="@{listSession}">
+          <div class="box">
+             <div class="icon"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></div>
+             <div class="content">
+               <h3>Mise À Jour</h3>
+               <p> Mettre à jour une session </p>
+             </div>
+          </div>
+          </a>
+          <a th:href="@{listSession}">
+          <div class="box">
+             <div class="icon"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></div>
+             <div class="content">
+               <h3>Mise À Jour</h3>
+               <p> Mettre à jour une session </p>
+             </div>
+          </div>
+          </a>
+          <a th:href="@{listSession}">
+          <div class="box">
+             <div class="icon"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></div>
+             <div class="content">
+               <h3>Mise À Jour</h3>
+               <p> Mettre à jour une session </p>
+             </div>
+          </div>
+          </a>
+          <a th:href="@{formSession}">
+          <div class="box">
+             <div class="icon"><i class="fa fa-plus-square" aria-hidden="true"></i></div>
+             <div class="content">
+               <h3>Ajouter</h3>
+               <p> Ajouter une session avec des dates precises</p>
+             </div>
+          </div>
+        </a>
+        <a th:href="@{formSession}">
+          <div class="box">
+             <div class="icon"><i class="fa fa-plus-square" aria-hidden="true"></i></div>
+             <div class="content">
+               <h3>Ajouter</h3>
+               <p> Ajouter une session avec des dates precises</p>
+             </div>
+          </div>
+        </a>
+      </div>
+   </div>
+</body>
+</html>

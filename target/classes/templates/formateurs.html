@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymleaf/layout"
+      layout:decorator="templateHeader" >
+<head>
+<meta charset="utf-8">
+<title>Liste Des Formateurs</title>
+</head>
+<body>
+<div layout:fragment="pageContenu">
+<div class="container mt-5">
+<div class="card">
+    <div class="card-header">Liste Des Formateurs</div>
+    <div class="card-body">
+    <br>
+    <form action="get" th:action="@{formateurs}">
+        <div class="form-group">
+         <label>Nom:</label>
+         <input name="nom" type="text" th:value="${motCleF}">
+         <button class="btn btn-primary">Chercher</button>
+        </div>
+    </form>
+    <table class="table">
+    <tr>
+       <th>ID</th><th>Nom</th><th>Prenom</th><th>Date de naissance</th><th>Email</th><th>Matiere</th><th>Suppression</th><th>Modification</th>
+    </tr>
+    <tr th:each="f:${listF}">
+       <td th:text="${f.id}"></td>
+       <td th:text="${f.nom}"></td>
+       <td th:text="${f.prenom}"></td>
+       <td th:text="${f.dateNaissance}"></td>
+       <td th:text="${f.email}"></td>
+       <td th:text="${f.matier}"></td>
+       <td><a class="btn btn-danger" th:href="@{supprimerFormateur(id=${f.id},nom=${motCleF},page=${currentPage},size=${size})}">Supprimer</a></td>
+       <td><a class="btn btn-danger" th:href="@{modifierFormateur(id=${f.id})}">Modifier</a></td>
+    </tr>
+</table>
+<ul class="nav nav-pills">
+    <li th:each="page,status:${pages}">
+       <a th:class="${status.index == currentPage ? 'btn btn-primary' : 'btn'}" th:href="@{formateurs(page=${status.index} , size=${size}, nom=${motCleF})}" th:text="${status.index}"></a>
+    </li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

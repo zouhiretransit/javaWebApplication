@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymleaf/layout"
+	layout:decorator="templateHeader">
+<head>
+<meta charset="utf-8">
+<title>Formulaire Responsable Formation</title>
+</head>
+<body>
+	<div layout:fragment="pageContenu">
+	   <div class="container">
+	      <div class="card">
+	         <div class="card-header" th:if="${respFormation.id==null}">
+					Formulaire d'ajout un nouveau responsable de formation</div>
+				<div class="card-header" th:if="${respFormation.id!=null}">
+					Formulaire de modification un responsable de formation</div>
+	         <br>
+	         <div class="card-body">
+	             <form th:action="@{ajouterResponsableFormation}" method="post">
+	                 <div class="form-group">
+							<label class="control-label">ID: </label> <label
+								class="control-label" th:text="${respFormation.id}"></label> <input
+								type="hidden" name="id" class="form-control"
+							    th:value="${respFormation.id}">
+						</div>
+						<div class="form-group">
+							<label class="control-label">Nom: </label> <input type="text"
+								name="nom" class="form-control" th:value="${respFormation.nom}">
+								<span style="color: red" th:errors=${respFormation.nom}></span>
+							
+						</div>
+						<div class="form-group">
+							<label class="control-label">Prenom: </label> <input type="text"
+								name="prenom" class="form-control" th:value="${respFormation.prenom}"> 
+								<span style="color: red" th:errors=${respFormation.prenom}></span>
+						</div>
+						<div class="form-group">
+							<label class="control-label">Date De Naissance: </label> <input
+								type="date" name="dateNaissance" class="form-control" th:value="${respFormation.dateNaissance}">
+						</div>
+						<div class="form-group">
+							<label class="control-label">Email: </label> <input type="text"
+								name="email" class="form-control" th:value="${respFormation.email}">
+						</div>
+						<div class="form-group">
+							<label class="control-label">Matricule: </label> <input type="text"
+								name="matricule" class="form-control" th:value="${respFormation.matricule}">
+						</div>
+						<button class="btn btn-success" type="submit">Ajouter</button>
+	             </form>
+	         </div>
+	      </div>
+	   </div>
+	</div>
+</body>
+</html>

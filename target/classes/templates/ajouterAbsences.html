@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymleaf/layout"
+	layout:decorator="templateHeader">
+<head>
+<meta charset="utf-8">
+<title>Liste Des Participants</title>
+<script type="text/javascript">
+   $(document).ready(function(){
+	   $(':checkbox').change(function(){
+		   if(this.checked)
+			  {
+			   //console.log($(this).val());
+			   var absenceId=document.getElementById("absenceID").value;
+			   //console.log(absenceId);
+			   var participantId=$(this).val();
+			   $.ajax({
+				   type: "GET",
+				   url: "/ajouterParticipantAbsence",
+				   data: {
+					   "idParticipant" : participantId ,
+					   "idAbsence" : absenceId
+				   },
+				   dataType : 'json',
+				   contentType: 'application/json',
+				   success: function(response){
+					   alert('vous avez ajouter '+response.nom+' '+response.prenom+' comme absent(e)');
+				   },
+				   error: function(e) {
+	    		        alert('Error while saving filters: ' + e.message);
+	    		    }
+			   });
+			  }
+		   else
+            {
+			   var absenceId=document.getElementById("absenceID").value;
+			   //console.log(absenceId);
+			   var participantId=$(this).val();
+			   $.ajax({
+				   type: "GET",
+				   url: "/supprimerParticipantAbsence",
+				   data: {
+					   "idParticipant" : participantId ,
+					   "idAbsence" : absenceId
+				   },
+				   dataType: 'json',
+				   contentType: 'application/json',
+				   success: function(response){
+					   alert('vous avez supprimer '+response.nom+' '+response.prenom);
+				   },
+				   error: function(e) {
+					   alert('Error while saving filters: ' + e.message);
+				   }
+			   });
+            }
+	   });
+	  /* $(':checkbox').change(function(){
+		   if(this.unchecked)
+		   {
+			   console.log($(this).val());
+			   var absenceId=document.getElementById("absenceID").value;
+			   console.log(absenceId);
+			   var participantId=$(this).val();
+		   }
+	   });*/
+   });
+</script>
+</head>
+<body>
+	<div layout:fragment="pageContenu">
+		<div class="container mt-5">
+			<div class="card">
+				<div class="card-header">
+					Formulaire d'absence</div>
+				
+				<br>
+				<div class="card-body">
+			     <form th:action="@{ajouterAbsence}" method="post">
+						<div class="form-group">
+							<label class="control-label">Id: </label> <label
+								class="control-label" th:text="${absence.id}"> </label> <input
+								type="hidden" id="absenceID" name="id" class="form-control" th:value="${absence.id}">
+						</div>
+						<div class="form-group">
+							<label>Date D'absence: </label> <input type="datetime-local" name="dateAbsence"
+								class="form-control" th:field="${absence.dateAbsence}"> <span
+								style="color: red" ></span>
+						</div>
+						<div class="form-group">
+							<label>Formateur: </label>
+							<select th:field="${absence.formateur.id}" class="form-control" name="formateur">
+							   <option th:each="formateur : ${formateurs}" th:text="${formateur.nom}" th:value="${formateur.id}" />
+							   
+							</select>
+							<span></span>
+						</div>
+						<div class="form-group">
+							<label>Formation: </label>
+							<select th:field="${absence.formation.id}" class="form-control" name="formation" id="dropDownFormation">
+							   <option th:each="formation : ${formations}"  th:text="${formation.nomFormation}" th:value="${formation.id}"  />
+							</select>
+							<span></span>
+						</div>
+						<br>
+						<table id="participantTable" class="table" name="participants">
+							<thead>
+							  <tr>
+							    <th>ID</th><th>Nom</th><th>Prenom</th><th>Date de naissance</th><th>Email</th><th>Fonction</th><th>absent(e)</th>
+							  </tr>
+							  </thead>
+							  <tbody id="participantTbody">
+							      <tr th:each="parti : ${listParticipants}">
+							        <td th:text="${parti.id}"></td>
+							        <td th:text="${parti.nom}"></td>
+							        <td th:text="${parti.prenom}"></td>
+							        <td th:text="${parti.dateNaissance}"></td>
+							        <td th:text="${parti.email}"></td>
+							        <td th:text="${parti.fonction}"></td>
+							        <td> <input name="checkbox" type="checkbox" id="${parti.id}" th:value="${parti.id}" autocomplete=OFF ></td>
+							      </tr>
+							  </tbody>
+							</table>
+							<span></span>
+							<button class="btn btn-success">Fin</button>
+				</form>
+				      
+				</div>
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymleaf/layout"
+	layout:decorator="templateHeader">
+<head>
+<meta charset="utf-8">
+<title>Liste Des Participants</title>
+</head>
+<body>
+	<div layout:fragment="pageContenu">
+		<div class="container mt-5">
+			<div class="card">
+				<div class="card-header" th:if="${formation.id==null}">
+					Formulaire d'ajout un nouveau participant</div>
+				<div class="card-header" th:if="${formation.id!=null}">
+					Formulaire de modification un participant</div>
+				<br>
+				<div class="card-body">
+					<form th:action="@{ajouterFormation}" method="post">
+					   <div class="form-group">
+							<label class="control-label">Id: </label> <label
+								class="control-label" th:text="${formation.id}"> </label> <input
+								type="hidden" name="id" class="form-control"
+								th:value="${formation.id}">
+						</div>
+						<div class="form-group">
+							<label>Nom: </label> <input type="text" name="nomFormation"
+								class="form-control" th:value="${formation.nomFormation}"> <span
+								style="color: red" th:errors=${formation.nomFormation}></span>
+						</div>
+						<div class="form-group">
+							<label>Nombre Places: </label> <input type="text" name="nbrPlaces"
+								class="form-control" th:value="${formation.nbrPlaces}"> <span></span>
+						</div>
+						<div class="form-group">
+							<label>Date Debut: </label> <input type="date"
+								name="dateDebut" class="form-control"
+								th:value="${formation.dateDebut}"> <span></span>
+						</div>
+						<div class="form-group">
+							<label>Date Fin: </label> <input type="date"
+								name="dateFin" class="form-control"
+								th:value="${formation.dateFin}"> <span></span>
+						</div>
+						<div class="form-group">
+							<label>Session : </label>
+							<select th:field="${formation.session.id}" class="form-control">
+							   <option th:each="sessionF:${sessions}"  th:text="${sessionF.nomSession}" th:value="${sessionF.id}" />
+							   
+							</select>
+							<span></span>
+						</div>
+						<div class="form-group">
+							<label>Session : </label>
+							<select th:field="${formation.formateur.id}" class="form-control">
+							   <option th:each="formateur:${formateurs}"  th:text="${formateur.nom}" th:value="${formateur.id}" />
+							   
+							</select>
+							<span></span>
+						</div>
+						<button class="btn btn-success" type="submit">Ajouter</button>
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>
